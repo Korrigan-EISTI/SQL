@@ -17,14 +17,14 @@ cdate DATE DEFAULT SYSDATE,
 id_client CONSTRAINT fk_commande REFERENCES client(id) 
 ); 
 
-CREATE TABLE produit( -- Création de table 
+CREATE TABLE produit( -- Crï¿½ation de table 
 id NUMBER CONSTRAINT pk_produit PRIMARY KEY, 
 libelle VARCHAR2(30), 
 stock NUMBER(10), 
 prix NUMBER(6,2) CHECK (prix > 0) 
 ); 
 
-CREATE TABLE ligne_commande( -- Création de table 
+CREATE TABLE Ligne_commande( -- Crï¿½ation de table 
 id NUMBER CONSTRAINT pk_ligne PRIMARY KEY, 
 no_commande CONSTRAINT fk1_ligne REFERENCES commande(no_commande), 
 no_ligne_commande NUMBER CONSTRAINT no_ligne NOT NULL, 
@@ -36,9 +36,16 @@ CONSTRAINT unique_ligne UNIQUE(no_commande, no_ligne_commande)
 -- inserrer des lignes
 INSERT INTO Client VALUES (3,'Dupond', 'Pierre', '35 rue St Honore Fontainebleau', 77300) ; 
 INSERT INTO Client VALUES (2, 'Dupond', 'Francois', '35 rue St Honore Fontainebleau', 77300) ; 
+INSERT INTO Client VALUES (5, 'Dupont', 'Jean', '1 avenue du Parc Cery', '95011');
+/*INSERT INTO Client VALUES (2, 'Martin', 'Philippe', '35 Champs ElysÃ©es Paris', '75008');*/
+INSERT INTO Client VALUES (4, 'Martin', 'Philippe', '35 Champs Elysees Paris', '75008');
+INSERT INTO commande VALUES (1, date '2007-08-30', 2);
+INSERT INTO commande (no_commande, id_client) VALUES (2, 5);
 INSERT INTO produit VALUES (1, 'Evian 2lx6', 4000, 2.99); 
 INSERT INTO produit VALUES (2, 'Lu Cracotte Framboise', 800, 3.99); 
 INSERT INTO produit VALUES (3, 'Nectar de Mangue', 4000, 2); 
 INSERT INTO produit VALUES (4, 'Contrex', 0, 2);  
-
+INSERT INTO Ligne_commande VALUES (1, 1, 1, 1, 5);
+-- INSERT INTO ligne_commande VALUES (2, 1, 1, 2, 53);
+-- INSERT INTO Ligne_commande VALUES (3, 5, 2, 1, 7);
 
